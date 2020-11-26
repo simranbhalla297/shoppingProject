@@ -1,0 +1,48 @@
+/*product page*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  margin-top: auto;
+  height: 100vh;
+}
+.wrapperForm {
+  left: 10%;
+  top: 20%;
+  position: relative;
+}
+.wrapperForm h1 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: "#343a40";
+}
+/*form*/
+.boxInput {
+  width: 80%;
+  height: 70vh;
+}
+.imputForm {
+  margin: auto;
+  width: 90%;
+
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+label {
+  margin-top: 8px;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  width: 90%;
+}
+
+/*footer*/
