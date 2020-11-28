@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { NavLink, useHistory } from "react-router-dom";
+
 import firebase from "./Firebase.js";
 function Navbar(props) {
   const [SelecteCategory, setSelecteCategory] = useState("categories");
@@ -17,6 +18,7 @@ function Navbar(props) {
     props.categoryCallback(selectvalue);
     console.log(selectvalue);
   }
+
   return (
     <div
       className="container-fluid p-4 "
@@ -29,7 +31,7 @@ function Navbar(props) {
         style={{ backgroundColor: "white" }}
       >
         <NavLink className="navbar-brand " to="#">
-          <ShoppingCartIcon style={{ fontSize: "30px" }} />
+          TrendGo
         </NavLink>
         <button
           className="navbar-toggler"
@@ -85,6 +87,20 @@ function Navbar(props) {
               <NavLink to="/login" onClick={logOut} className="nav-link">
                 Logout
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <div className="cart" style={{ position: "relative" }}>
+                <ShoppingCartIcon style={{ fontSize: "30px" }} />
+                <p
+                  style={{
+                    position: "absolute",
+                    bottom: "2px",
+                    left: "26px",
+                  }}
+                >
+                  {props.item}
+                </p>
+              </div>
             </li>
           </ul>
         </div>

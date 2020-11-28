@@ -12,12 +12,19 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import Login from "./Login";
+
 function App() {
   const [category, setCategory] = useState();
+  const [cartitem, setCartItem] = useState();
 
   function categoryHandler(newcategory) {
     setCategory(newcategory);
     console.log("category handler called in parent");
+  }
+
+  function carthandler(cartItem) {
+    console.log("cart tem nabar");
+    setCartItem(cartItem);
   }
 
   return (
@@ -31,7 +38,7 @@ function App() {
           <Navbar /> <Products /> <Footer />
         </Route>
         <Route exact path="/cart">
-          <Navbar /> <Cart /> <Footer />
+          <Navbar item={cartitem} /> <Cart cart={carthandler} /> <Footer />
         </Route>
         <Route exact path="/itemdetail">
           <Navbar /> <ItemDetail /> <Footer />

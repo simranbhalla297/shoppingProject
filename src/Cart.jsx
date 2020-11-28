@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./Firebase.js";
 import Cartitem from "./Cartitem";
+import Carttotal from "./Carttotal";
+import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-function Cart() {
+import HomeIcon from "@material-ui/icons/Home";
+function Cart(props) {
+  const history = useHistory();
+  console.log(history);
   const [cart, setCart] = useState([]);
   const [totalitems, setTotalItems] = useState();
 
@@ -25,8 +30,17 @@ function Cart() {
   }
   useEffect(() => {
     getCartList();
-  });
+  }, []);
 
+  //get total items in cart
+  function getTotalItem() {
+    var totalitems = 0;
+    cart.forEach((item) => {
+      totalitems += item.quantity;
+    });
+    setTotalItems(totalitems);
+    props.cart(totalitems);
+  }
   //remove item from list
 
   function removeItemfromlist(id) {
@@ -42,42 +56,63 @@ function Cart() {
       });
   }
 
-  //get total items in cart
-  function getTotalItem() {
-    var totalitems = 0;
-    cart.forEach((item) => {
-      totalitems += item.quantity;
-    });
-    setTotalItems(totalitems);
+  //redirect to homepage
+
+  function redirectToHome() {
+    history.push("/");
   }
 
   return (
-    <div
-      className="cartFlex"
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        backgroundColor: "green",
-      }}
-    >
+    <div className="box">
       <div
-        className="cartWrapper"
-        style={{ backgroundColor: "white", width: "40%" }}
+        className="cartFlex"
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+        }}
       >
-        <h1>View cart</h1>
-        <h1>total items in cart{totalitems}</h1>
-        <div className="cartitems"></div>
-        {cart.map((cartItem) => {
-          return (
-            <div>
-              <Cartitem data={cartItem} Itemremove={removeItemfromlist} />
-            </div>
-          );
-        })}
+        <div
+          className="cartWrapper"
+          style={{ backgroundColor: "white", width: "40%" }}
+        >
+          <h2>View cart</h2>
+          <h4 style={{ textTransform: "capitalize" }}>
+            total items in cart {totalitems}
+          </h4>
+          <div className="cartitems"></div>
+          {cart.map((cartItem) => {
+            return (
+              <div>
+                <Cartitem data={cartItem} Itemremove={removeItemfromlist} />
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className="cart_total"
+          style={{ border: "1px solid black", padding: "20px" }}
+        >
+          <h3>Cart Total</h3>
+          <h4>
+            Subtotal: ({totalitems}
+            {totalitems < 2 ? "item" : "items"})
+          </h4>
+          <Carttotal cart={cart} />
+        </div>
       </div>
-      <div className="price">
-        <h1>Price</h1>
-      </div>
+
+      {totalitems ? (
+        <p style={{ textAlign: "center" }}>
+          <Link onClick={redirectToHome}>
+            <button type="button" class="btn btn-dark">
+              Back to
+              <span>
+                <HomeIcon style={{ marginBottom: "5px" }} />
+              </span>
+            </button>
+          </Link>
+        </p>
+      ) : null}
     </div>
   );
 }

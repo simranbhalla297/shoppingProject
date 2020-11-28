@@ -43,7 +43,7 @@ function Home(props) {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          width: "60%",
+          width: "70%",
           margin: " auto",
         }}
       >

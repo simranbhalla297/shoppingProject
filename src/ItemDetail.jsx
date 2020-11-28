@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import firebase from "./Firebase.js";
@@ -93,7 +93,7 @@ function ItemDetail(props) {
                   }}
                 >
                   <span>
-                    <ShoppingCartIcon
+                    <AddShoppingCartIcon
                       style={{ fontSize: "30px", marginRight: "10px" }}
                     />
                   </span>
