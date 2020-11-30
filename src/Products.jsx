@@ -72,20 +72,14 @@ function Products() {
   }
 
   return (
-    <div
-      className="container-fluid"
-      style={{
-        backgroundColor: "#f5f7f9	",
-      }}
-    >
-      <div className=" container  ">
+    <div className="container-fluid">
+      <div className=" box_container ">
         <div className="wrapper ">
           <div className="wrapperForm">
             <div className="boxInput">
               <h1
                 style={{
                   textAlign: "center",
-
                   textTransform: "capitalize",
                 }}
               >

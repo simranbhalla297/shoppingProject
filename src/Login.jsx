@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./Firebase.js";
 import { useHistory } from "react-router-dom";
+import Signin from "./Signin";
+import Signup from "./Signup";
+import { Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import "./Login.css";
 const Login = () => {
   const history = useHistory();
   console.log(history);
@@ -29,30 +34,6 @@ const Login = () => {
         // ...
       });
   };
-  const register = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        resetInput();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  const login = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        resetInput();
-        console.log("logged in");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
   const resetInput = () => {
     setEmail("");
@@ -75,63 +56,77 @@ const Login = () => {
   });
 
   return (
-    <div className="login_wrapper">
-      <div className="login_container">
+    <div className="   login_wrapper   ">
+      <div className="  login_container ">
         <div className="center">
-          <h1>Login</h1>
-
           <div className="inputBox">
-            <h3 className="heading">Login/Register</h3>
+            <div className="text" style={{ paddingBottom: "30px" }}>
+              <h3
+                className="heading"
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                User Login
+              </h3>
+              <p>Enter your detail below to continue</p>
+            </div>
+            <div
+              className="form"
+              style={{ textAlign: "center", margin: "auto", padding: "5px" }}
+            >
+              <div className="email">
+                <input
+                  type="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                />
+              </div>
+              <div className="password">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+              </div>
+            </div>
 
-            <div className="form">
-              <label for="email">
-                <b>Email</b>
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="email"
-              />
-              <label for="email">
-                <b>Password</b>
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="password"
-              />
-
-              {hasaccount ? (
-                <>
-                  <button className="clickbtn" onClick={login}>
-                    {" "}
-                    sign in
-                  </button>
-                  <p>
-                    Don't have account ?
-                    <span onClick={() => sethasAccount(!hasaccount)}>
-                      Sign up
-                    </span>
-                  </p>
-                </>
-              ) : (
-                <>
-                  <button className="clickbtn" onClick={register}>
-                    sign Up
-                  </button>
-                  <p>
-                    {" "}
-                    have an account ?
-                    <span onClick={() => sethasAccount(!hasaccount)}>
-                      Sign in
-                    </span>
-                  </p>
-                </>
-              )}
-
-              <button className="clickbtn" onClick={() => onSubmit()}>
+            {hasaccount ? (
+              <>
+                <Signin
+                  email={email}
+                  password={password}
+                  onClick={() => sethasAccount(!hasaccount)}
+                />
+                <button type="button" class="btn btn-primary btn-lg">
+                  <Link
+                    to="/forgotpassword"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    Forgot Password
+                  </Link>
+                </button>
+              </>
+            ) : (
+              <>
+                <Signup
+                  email={email}
+                  password={password}
+                  onClick={() => sethasAccount(!hasaccount)}
+                />
+              </>
+            )}
+            <div className="btn">
+              <button
+                type="button"
+                className="googlebtn"
+                onClick={() => onSubmit()}
+              >
+                <span style={{ margin: "5px" }}>
+                  <FaGoogle color="#00749f" />
+                </span>
                 Sign in with google account
               </button>
             </div>

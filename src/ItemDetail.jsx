@@ -50,40 +50,31 @@ function ItemDetail(props) {
 
   return (
     <div>
-      <div className="table">
+      <div className="Itemwrapper ">
         <div
-          className="tableContainer"
+          className="itemDetail"
           style={{
-            border: "2px solid black",
-
-            width: "50%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "5%",
           }}
         >
-          <h4>product details</h4>
-          <div className="showImage">
+          <div
+            className="card shadow  bg-white rounded "
+            style={{ width: "40%" }}
+          >
             <img src={itemdetail.picture} alt="image" />
-          </div>
-          <div className="showDetails">
-            <h4>{itemdetail.category}</h4>
-            <p>{itemdetail.name}</p>
-            <p>{itemdetail.price}</p>
-            <p>{itemdetail.description}</p>
-            <p
-              style={{
-                textAlign: "center",
-                margin: "5px",
-                padding: "5px",
-              }}
-            >
-              <button
-                style={{
-                  padding: "5px",
-                  backgroundColor: "black",
-                  color: "white",
-                  textTransform: "capitalize",
-                }}
-                onClick={AddtoCart}
-              >
+            <div className="card-body" style={{ textTransform: "capitalize" }}>
+              <h2>Item detail</h2>
+              <h5 className="card-title">Category : {itemdetail.category}</h5>
+
+              <p className="card-text">Item : {itemdetail.name}</p>
+              <p className="card-text">Price : {itemdetail.price}</p>
+              <p className="card-text">
+                description : {itemdetail.description}
+              </p>
+
+              <button type="button" class="btn btn-primary" onClick={AddtoCart}>
                 <Link
                   to={`/cart?id=${itemdetail.id}`}
                   style={{
@@ -97,10 +88,10 @@ function ItemDetail(props) {
                       style={{ fontSize: "30px", marginRight: "10px" }}
                     />
                   </span>
-                  go to cart
+                  Go to cart
                 </Link>
               </button>
-            </p>
+            </div>
           </div>
         </div>
       </div>

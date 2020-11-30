@@ -5,14 +5,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .wrapper {
-  margin-top: auto;
   height: 100vh;
+  display: flex;
 }
 .wrapperForm {
-  left: 10%;
-  top: 20%;
-  position: relative;
+  padding: 20px;
+  background-color: #f5f5f5;
+
+  margin: auto;
+  width: 50%;
 }
 .wrapperForm h1 {
   margin-bottom: 0.5rem;

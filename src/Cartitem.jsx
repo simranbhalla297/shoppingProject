@@ -19,6 +19,7 @@ function Cartitem(props) {
     if (count > 1) {
       setCount(count - 1);
     }
+    props.onDecrement(cartItemId);
   }
 
   function increment() {
@@ -30,6 +31,7 @@ function Cartitem(props) {
       console.log(err);
     });
     setCount(count + 1);
+    props.onIncrement(cartItemId);
   }
 
   //remove item from server

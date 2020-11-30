@@ -21,9 +21,9 @@ function Navbar(props) {
 
   return (
     <div
-      className="container-fluid p-4 "
+      className="container-fluid p-4 shadow p-2 mb-3  bg-white rounded"
       style={{
-        borderBottom: "1px solid black",
+        backgroundColor: "green",
       }}
     >
       <nav
@@ -56,7 +56,7 @@ function Navbar(props) {
                 style={{ width: "120px" }}
                 value={SelecteCategory}
               >
-                <option value="All">all</option>
+                <option value="All">All</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Home and furniture">Home and furniture</option>
                 <option value="clothing">clothing</option>

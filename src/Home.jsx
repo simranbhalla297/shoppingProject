@@ -13,6 +13,9 @@ function Home(props) {
   if (selectedCategory) {
     ref = ref.where("category", "==", selectedCategory);
   }
+  if (selectedCategory == "All") {
+    var ref = firebase.firestore().collection("products");
+  }
   function getposts() {
     ref.get().then((data) => {
       console.log(data.docs);
@@ -32,11 +35,7 @@ function Home(props) {
   }, [selectedCategory]);
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f5f7f9	",
-      }}
-    >
+    <div>
       <div
         className="imgWrapper"
         style={{
@@ -50,9 +49,11 @@ function Home(props) {
         {itemlist.map((item) => {
           return (
             <div
+              className="shadow  mb-5 bg-white rounded"
               style={{
                 margin: "20px",
-                border: "1px solid black",
+
+                backgroundColor: "#f5f7f9",
               }}
             >
               <div className="img_container">
@@ -69,6 +70,8 @@ function Home(props) {
                 }}
               >
                 <button
+                  type="button"
+                  className="btn btn-primary"
                   style={{
                     padding: "5px",
                     backgroundColor: "black",
@@ -81,7 +84,7 @@ function Home(props) {
                     style={{ color: "white", textDecoration: "none" }}
                   >
                     {" "}
-                    view more
+                    Add to Cart
                   </Link>
                 </button>
               </p>

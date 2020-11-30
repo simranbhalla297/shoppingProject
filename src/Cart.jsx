@@ -32,6 +32,10 @@ function Cart(props) {
     getCartList();
   }, []);
 
+  useEffect(() => {
+    getTotalItem();
+  }, [cart.length]);
+
   //get total items in cart
   function getTotalItem() {
     var totalitems = 0;
@@ -41,7 +45,31 @@ function Cart(props) {
     setTotalItems(totalitems);
     props.cart(totalitems);
   }
-  //remove item from list
+  //omIncrement
+  function onIncrement(id) {
+    setCart((prev) =>
+      prev.map((element) => {
+        if (element.id === id) {
+          element.quantity++;
+        }
+        return element;
+      })
+    );
+    getTotalItem();
+  }
+
+  //on decrement
+  function onDecrement(id) {
+    setCart((prev) =>
+      prev.map((element) => {
+        if (element.id === id) {
+          element.quantity--;
+        }
+        return element;
+      })
+    );
+    getTotalItem();
+  }
 
   function removeItemfromlist(id) {
     console.log("here callback");
@@ -83,15 +111,17 @@ function Cart(props) {
           {cart.map((cartItem) => {
             return (
               <div>
-                <Cartitem data={cartItem} Itemremove={removeItemfromlist} />
+                <Cartitem
+                  data={cartItem}
+                  Itemremove={removeItemfromlist}
+                  onIncrement={onIncrement}
+                  onDecrement={onDecrement}
+                />
               </div>
             );
           })}
         </div>
-        <div
-          className="cart_total"
-          style={{ border: "1px solid black", padding: "20px" }}
-        >
+        <div className="cart_total" style={{ padding: "20px" }}>
           <h3>Cart Total</h3>
           <h4>
             Subtotal: ({totalitems}

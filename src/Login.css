@@ -1,0 +1,23 @@
+.login_wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.login_container {
+  background: #f5f7f9;
+  width: 30%;
+  height: 65vh;
+  padding: 20px;
+  margin: auto;
+}
+.center {
+  text-align: center;
+  margin: 50px auto;
+}
+.googlebtn {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid black;
+}

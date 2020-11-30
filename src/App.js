@@ -12,6 +12,7 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import Login from "./Login";
+import Forgotpassword from "./Forgotpassword";
 
 function App() {
   const [category, setCategory] = useState();
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route exact path="/contact">
           <Navbar /> <Contact /> <Footer />
+        </Route>
+        <Route exact path="/forgotpassword">
+          <Navbar /> <Forgotpassword /> <Footer />
         </Route>
         <Route exact path="/login">
           <Login />
