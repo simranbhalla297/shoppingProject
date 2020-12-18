@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
@@ -8,7 +9,7 @@ import Home from "./Home";
 import Products from "./Products";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
-import Contact from "./Contact";
+
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import Login from "./Login";
@@ -24,7 +25,7 @@ function App() {
   }
 
   function carthandler(cartItem) {
-    console.log("cart tem nabar");
+    console.log("total items");
     setCartItem(cartItem);
   }
 
@@ -44,11 +45,9 @@ function App() {
         <Route exact path="/itemdetail">
           <Navbar /> <ItemDetail /> <Footer />
         </Route>
-        <Route exact path="/contact">
-          <Navbar /> <Contact /> <Footer />
-        </Route>
+
         <Route exact path="/forgotpassword">
-          <Navbar /> <Forgotpassword /> <Footer />
+          <Forgotpassword />
         </Route>
         <Route exact path="/login">
           <Login />

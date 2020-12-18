@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import firebase from "./Firebase.js";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import Loader from "react-loader-spinner";
 function Home(props) {
   const history = useHistory();
   console.log(history);
   var selectedCategory = props.categoryValue;
   console.log(selectedCategory);
   const [itemlist, setItemlist] = useState([]);
+  const [loading, setLoading] = useState(false);
   var ref = firebase.firestore().collection("products");
   if (selectedCategory) {
     ref = ref.where("category", "==", selectedCategory);
@@ -17,14 +18,24 @@ function Home(props) {
     var ref = firebase.firestore().collection("products");
   }
   function getposts() {
-    ref.get().then((data) => {
-      console.log(data.docs);
-      const item = data.docs.map((doc) => doc.data());
-      console.log(item);
-      console.log("get item");
-      setItemlist(item);
-      //setImageurl(item.picture);
-    });
+    setLoading(true);
+    setItemlist([]);
+    ref
+      .get()
+      .then((data) => {
+        console.log(data.docs);
+        const item = data.docs.map((doc) => doc.data());
+        console.log(item);
+        console.log("get item");
+        setItemlist(item);
+        setLoading(false);
+
+        //setImageurl(item.picture);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }
   useEffect(() => {
     if (firebase.auth().currentUser == null) {
@@ -46,10 +57,13 @@ function Home(props) {
           margin: " auto",
         }}
       >
+        {loading ? (
+          <Loader type="Oval" color="black" height={80} width={80} />
+        ) : null}
         {itemlist.map((item) => {
           return (
             <div
-              className="shadow  mb-5 bg-white rounded"
+              className="shadow-sm p-1 mb-1 bg-white rounded"
               style={{
                 margin: "20px",
 

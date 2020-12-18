@@ -1,3 +1,4 @@
+
 /*product page*/
 
 * {
@@ -46,6 +47,14 @@ input {
   padding: 8px;
   margin-top: 5px;
   width: 90%;
+}
+.img_container:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
+.img_contain:hover {
+  transform: scale(1.07);
+  cursor: pointer;
 }
 
 /*footer*/

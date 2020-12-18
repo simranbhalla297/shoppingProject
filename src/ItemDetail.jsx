@@ -10,6 +10,7 @@ function ItemDetail(props) {
   //const [itemid, setItemId] = useState("");
   const [cartItem, setCartItem] = useState([]);
   const [itemdetail, setItemDetail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function getItemId() {
     console.log("hi");
@@ -17,13 +18,14 @@ function ItemDetail(props) {
     console.log(search);
     var ItemId = search.substring(4);
     console.log(ItemId);
-
+    setLoading(true);
     const itemRef = firebase.firestore().collection("products").doc(ItemId);
     itemRef.get().then((snap) => {
       var details = snap.data();
       setItemDetail(details);
       console.log(details);
     });
+    setLoading(false);
   }
   useEffect(() => {
     getItemId();
@@ -49,53 +51,77 @@ function ItemDetail(props) {
   }
 
   return (
-    <div>
-      <div className="Itemwrapper ">
-        <div
-          className="itemDetail"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "5%",
-          }}
-        >
+    <>
+      {loading ? (
+        <div class="d-flex justify-content-center">
           <div
-            className="card shadow  bg-white rounded "
-            style={{ width: "40%" }}
+            class="spinner-border"
+            role="status"
+            style={{ textAlign: "center" }}
           >
-            <img src={itemdetail.picture} alt="image" />
-            <div className="card-body" style={{ textTransform: "capitalize" }}>
-              <h2>Item detail</h2>
-              <h5 className="card-title">Category : {itemdetail.category}</h5>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      ) : null}
+      <div>
+        <div className="Itemwrapper ">
+          <div
+            className="itemDetail"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "5%",
+            }}
+          >
+            <div
+              className="card shadow  bg-white rounded "
+              style={{ width: "40%" }}
+            >
+              <img
+                src={itemdetail.picture}
+                alt="image"
+                className="img_contain"
+              />
+              <div
+                className="card-body"
+                style={{ textTransform: "capitalize" }}
+              >
+                <h2>Item detail</h2>
+                <h5 className="card-title">Category : {itemdetail.category}</h5>
 
-              <p className="card-text">Item : {itemdetail.name}</p>
-              <p className="card-text">Price : {itemdetail.price}</p>
-              <p className="card-text">
-                description : {itemdetail.description}
-              </p>
+                <p className="card-text">Item : {itemdetail.name}</p>
+                <p className="card-text">Price : {itemdetail.price}</p>
+                <p className="card-text">
+                  description : {itemdetail.description}
+                </p>
 
-              <button type="button" class="btn btn-primary" onClick={AddtoCart}>
-                <Link
-                  to={`/cart?id=${itemdetail.id}`}
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    marginRight: "10px",
-                  }}
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={AddtoCart}
                 >
-                  <span>
-                    <AddShoppingCartIcon
-                      style={{ fontSize: "30px", marginRight: "10px" }}
-                    />
-                  </span>
-                  Go to cart
-                </Link>
-              </button>
+                  <Link
+                    to={`/cart?id=${itemdetail.id}`}
+                    style={{
+                      color: "white",
+                      textDecoration: "none",
+                      marginRight: "10px",
+                    }}
+                  >
+                    <span>
+                      <AddShoppingCartIcon
+                        style={{ fontSize: "30px", marginRight: "10px" }}
+                      />
+                    </span>
+                    Go to cart
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default ItemDetail;

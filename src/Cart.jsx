@@ -10,11 +10,12 @@ function Cart(props) {
   console.log(history);
   const [cart, setCart] = useState([]);
   const [totalitems, setTotalItems] = useState();
-
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   console.log(location);
   //get list
   function getCartList() {
+    setLoading(true);
     var uid = firebase.auth().currentUser.uid;
     var ref = firebase
       .firestore()
@@ -26,6 +27,7 @@ function Cart(props) {
       console.log(item);
       setCart(item);
       getTotalItem();
+      setLoading(false);
     });
   }
   useEffect(() => {
@@ -36,7 +38,7 @@ function Cart(props) {
     getTotalItem();
   }, [cart.length]);
 
-  //get total items in cart
+  //get total items in cart callback app.js
   function getTotalItem() {
     var totalitems = 0;
     cart.forEach((item) => {
@@ -92,6 +94,17 @@ function Cart(props) {
 
   return (
     <div className="box">
+      {loading ? (
+        <div class="d-flex justify-content-center">
+          <div
+            class="spinner-border"
+            role="status"
+            style={{ textAlign: "center" }}
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      ) : null}
       <div
         className="cartFlex"
         style={{

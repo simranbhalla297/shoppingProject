@@ -56,7 +56,7 @@ const Login = () => {
   });
 
   return (
-    <div className="   login_wrapper   ">
+    <div className="   login_wrapper bg-primary  ">
       <div className="  login_container ">
         <div className="center">
           <div className="inputBox">

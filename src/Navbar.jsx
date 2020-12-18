@@ -20,12 +20,7 @@ function Navbar(props) {
   }
 
   return (
-    <div
-      className="container-fluid p-4 shadow p-2 mb-3  bg-white rounded"
-      style={{
-        backgroundColor: "green",
-      }}
-    >
+    <div className="container-fluid p-4 shadow-sm p-3 mb-5 bg-white rounded">
       <nav
         className=" container navbar navbar-expand-lg navbar-light  p-1 d-flex  justify-content-center"
         style={{ backgroundColor: "white" }}
@@ -49,7 +44,7 @@ function Navbar(props) {
           id="navbarNav"
         >
           <ul className="navbar-nav">
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
               <label>Select Category</label>
               <select
                 onChange={handleChange}
@@ -78,11 +73,7 @@ function Navbar(props) {
                 Cart
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/contact" className="nav-link">
-                Contact Us
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink to="/login" onClick={logOut} className="nav-link">
                 Logout
