@@ -3,7 +3,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { NavLink, useHistory } from "react-router-dom";
 
 import firebase from "./Firebase.js";
-function Navbar(props) {
+function Navtransparent(props) {
   const [SelecteCategory, setSelecteCategory] = useState("categories");
   const history = useHistory();
   //console.log(history);
@@ -20,11 +20,8 @@ function Navbar(props) {
   }
 
   return (
-    <div className="container-fluid shadow-sm p-1 mb-5 bg-white rounded">
-      <nav
-        className=" container navbar navbar-expand-lg navbar-light  p-1 d-flex  justify-content-center"
-        style={{ backgroundColor: "white" }}
-      >
+    <div className="container-fluid navStyle">
+      <nav className=" container navbar navbar-expand-lg navbar-light  p-1 d-flex  justify-content-center navtext ">
         <NavLink className="navbar-brand " to="#">
           TrendGo
         </NavLink>
@@ -40,7 +37,7 @@ function Navbar(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="  collapse navbar-collapse d-flex justify-content-end"
+          className="  collapse navbar-collapse d-flex justify-content-end  "
           id="navbarNav"
         >
           <ul className="navbar-nav">
@@ -98,4 +95,4 @@ function Navbar(props) {
     </div>
   );
 }
-export default Navbar;
+export default Navtransparent;

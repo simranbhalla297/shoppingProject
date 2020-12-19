@@ -9,11 +9,12 @@ import Home from "./Home";
 import Products from "./Products";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
-
+import Navtransparent from "./Navtransparent";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import Login from "./Login";
 import Forgotpassword from "./Forgotpassword";
+import Header from "./Header";
 
 function App() {
   const [category, setCategory] = useState();
@@ -33,7 +34,8 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
-          <Navbar categoryCallback={categoryHandler} />
+          <Navtransparent categoryCallback={categoryHandler} />
+          <Header />
           <Home categoryValue={category} /> <Footer />
         </Route>
         <Route exact path="/product">

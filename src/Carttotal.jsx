@@ -22,10 +22,6 @@ function Carttotal({ cart }) {
   var total = totalprice;
   console.log(total);
 
-  return (
-    <div>
-      <p>{total}</p>
-    </div>
-  );
+  return <h5>Total: {total}</h5>;
 }
 export default Carttotal;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "./Firebase.js";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
@@ -6,7 +6,8 @@ import RemoveCircleOutlineOutlinedIcon from "@material-ui/icons/RemoveCircleOutl
 function Cartitem(props) {
   const [count, setCount] = useState(props.data.quantity);
   const [isShown, setIsShown] = useState(false);
-
+  const [subtotal, setSubtotal] = useState();
+  var price = props.data.price;
   // const [cart, setCart] = useState([]);
   function decrement() {
     var cartItemId = props.data.id;
@@ -48,84 +49,57 @@ function Cartitem(props) {
     props.Itemremove(cartItemId);
   }
 
+  function subTotalItem() {
+    var itemprice = price;
+    console.log(itemprice);
+    var Subtotal = price * count;
+    setSubtotal(Subtotal);
+  }
+  useEffect(() => {
+    subTotalItem();
+  });
+
   return (
-    <div>
-      <div
-        className="flex"
-        onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}
-        style={{
-          margin: " 15px auto",
-          backgroundColor: "#f5f7f9	",
-        }}
-      >
-        <div
-          className="cartDetails"
-          style={{
-            border: "1px solid grey",
-            display: "flex",
-          }}
-        >
+    <tbody
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+    >
+      <tr>
+        <td className="product_remove">
+          {isShown && (
+            <p style={{ float: "right", cursor: "pointer" }}>
+              <RemoveShoppingCartIcon onClick={removeItem} />
+            </p>
+          )}
+        </td>
+        <td className="product_image">
           <img
             src={props.data.picture}
-            style={{ width: "220px", height: "250px" }}
+            style={{ width: "32px", height: "40px" }}
           />
-          <div
-            className="details"
-            style={{
-              margin: "auto",
-              textTransform: "capitalize",
-              color: "#5a595c",
-            }}
-          >
-            <p style={{ textAlign: "center" }}>
-              <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-                Item :
-              </span>
-              {props.data.name}
-            </p>
-            <p style={{ textAlign: "center" }}>
-              <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-                Description :
-              </span>{" "}
-              {props.data.description}
-            </p>
-            <p style={{ textAlign: "center" }}>
-              <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-                Price :
-              </span>
-              {props.data.price}
-            </p>
-            <div
-              className="button"
-              style={{
-                textAlign: "center",
+        </td>
+        <td className="product_name"> {props.data.name}</td>
+        <td className="product_price"> {props.data.price}</td>
+        <td className="product_quantity">
+          {count}
 
-                padding: "5px",
-              }}
-            >
-              <RemoveCircleOutlineOutlinedIcon
-                onClick={decrement}
-                style={{ marginRight: "5px" }}
-              />
+          <div className="button">
+            <RemoveCircleOutlineOutlinedIcon
+              onClick={decrement}
+              style={{ marginRight: "5px" }}
+            />
 
-              <span>{count}</span>
+            <span>{count}</span>
 
-              <AddCircleOutlineIcon
-                onClick={increment}
-                style={{ marginLeft: "5px" }}
-              />
-            </div>
-
-            {isShown && (
-              <p style={{ float: "right", cursor: "pointer" }}>
-                <RemoveShoppingCartIcon onClick={removeItem} />
-              </p>
-            )}
+            <AddCircleOutlineIcon
+              onClick={increment}
+              style={{ marginLeft: "5px" }}
+            />
           </div>
-        </div>
-      </div>
-    </div>
+        </td>
+        <td className="product_subtotal"> {subtotal}</td>
+      </tr>
+    </tbody>
   );
 }
 export default Cartitem;

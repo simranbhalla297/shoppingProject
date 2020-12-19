@@ -4,9 +4,25 @@ import "./App.css";
 function Footer() {
   return (
     <div>
-      <div className=" bg-dark p-1 m-3">
+      <div
+        style={{
+          backgroundColor: "#576A7D",
+          padding: "7px",
+        }}
+      >
         <div className="text">
-          <h4 style={{ textAlign: "center", color: "white" }}>Footer</h4>
+          <h6
+            style={{
+              textAlign: "center",
+
+              color: "#E9F9FF",
+              fontSize: "18px",
+              fontWeight: "400",
+              lineHeight: "1",
+            }}
+          >
+            Footer
+          </h6>
         </div>
       </div>
     </div>

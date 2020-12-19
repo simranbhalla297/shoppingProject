@@ -93,7 +93,7 @@ function Cart(props) {
   }
 
   return (
-    <div className="box">
+    <div className=" container box">
       {loading ? (
         <div class="d-flex justify-content-center">
           <div
@@ -105,57 +105,76 @@ function Cart(props) {
           </div>
         </div>
       ) : null}
-      <div
-        className="cartFlex"
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-        }}
-      >
-        <div
-          className="cartWrapper"
-          style={{ backgroundColor: "white", width: "40%" }}
-        >
-          <h2>View cart</h2>
-          <h4 style={{ textTransform: "capitalize" }}>
-            total items in cart {totalitems}
-          </h4>
-          <div className="cartitems"></div>
-          {cart.map((cartItem) => {
-            return (
-              <div>
-                <Cartitem
-                  data={cartItem}
-                  Itemremove={removeItemfromlist}
-                  onIncrement={onIncrement}
-                  onDecrement={onDecrement}
-                />
-              </div>
-            );
-          })}
+      <div className="cart_wrapper">
+        <div className="cart_item">
+          <div className="show_products">
+            <h2 style={{ lineHeight: "1", fontSize: "2rem", color: "#264653" }}>
+              Cart
+            </h2>
+            <div className="cart_box">
+              <p style={{ textTransform: "capitalize", fontSize: "1rem" }}>
+                Items in your cart {totalitems}
+              </p>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th className="product_remove">&nbsp;</th>
+                  <th className="product_image">&nbsp;</th>
+                  <th className="product_name">Product</th>
+                  <th className="product_price">Price</th>
+                  <th className="product_quantity">Quantity</th>
+                  <th className="product_subtotal">Subtotal</th>
+                </tr>
+              </thead>
+
+              {cart.map((cartItem) => {
+                return (
+                  <Cartitem
+                    data={cartItem}
+                    Itemremove={removeItemfromlist}
+                    onIncrement={onIncrement}
+                    onDecrement={onDecrement}
+                  />
+                );
+              })}
+            </table>
+          </div>
         </div>
-        <div className="cart_total" style={{ padding: "20px" }}>
-          <h3>Cart Total</h3>
-          <h4>
-            Subtotal: ({totalitems}
-            {totalitems < 2 ? "item" : "items"})
-          </h4>
-          <Carttotal cart={cart} />
+        <div className="clearfix">
+          <div className="cart_total">
+            <table class="table table-bordered Totaltable">
+              <h4>Cart Total</h4>
+              <tbody>
+                <tr>
+                  <td>
+                    {" "}
+                    <h5>
+                      Subtotal: ({totalitems}
+                      {totalitems < 2 ? "item" : "items"})
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Carttotal cart={cart} />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            {totalitems ? (
+              <Link onClick={redirectToHome}>
+                <button type="button" class="btn  widthbutton">
+                  return to home
+                </button>
+              </Link>
+            ) : null}
+            <button type="button" class="btn widthbutton">
+              Proceed to checkout
+            </button>
+          </div>
         </div>
       </div>
-
-      {totalitems ? (
-        <p style={{ textAlign: "center" }}>
-          <Link onClick={redirectToHome}>
-            <button type="button" class="btn btn-dark">
-              Back to
-              <span>
-                <HomeIcon style={{ marginBottom: "5px" }} />
-              </span>
-            </button>
-          </Link>
-        </p>
-      ) : null}
     </div>
   );
 }

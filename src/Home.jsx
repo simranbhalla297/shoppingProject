@@ -46,65 +46,90 @@ function Home(props) {
   }, [selectedCategory]);
 
   return (
-    <div>
-      <div
-        className="imgWrapper"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          width: "70%",
-          margin: " auto",
-        }}
-      >
-        {loading ? (
-          <Loader type="Oval" color="black" height={80} width={80} />
-        ) : null}
-        {itemlist.map((item) => {
-          return (
-            <div
-              className="shadow-sm p-1 mb-1 bg-white rounded"
-              style={{
-                margin: "20px",
+    <div style={{ backgroundColor: "#f5f5f5", paddingBottom: "2%" }}>
+      <div>
+        <div className="ItemHeading">
+          <h2
+            style={{
+              lineHeight: "1",
+              fontSize: " 2.5rem",
+              display: "block",
+              textAlign: "center",
+              marginBottom: "25px",
+              paddingTop: "6%",
+              color: "#5A595F",
+            }}
+          >
+            Product Items...
+          </h2>
+        </div>
+        <div
+          className="imgWrapper"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            width: "70%",
+            margin: "  auto",
+          }}
+        >
+          {loading ? (
+            <Loader type="Oval" color="black" height={80} width={80} />
+          ) : null}
 
-                backgroundColor: "#f5f7f9",
-              }}
-            >
-              <div className="img_container">
-                <img
-                  src={item.picture}
-                  style={{ width: "250px", height: "250px" }}
-                />
-              </div>
-              <p
+          {itemlist.map((item) => {
+            return (
+              <div
                 style={{
-                  textAlign: "center",
-                  margin: "5px",
-                  padding: "5px",
+                  boxShadow: "0px 0px 4px 1px rgba(0, 0, 0, 0.2)",
+
+                  margin: "10px",
+                  backgroundColor: "white",
                 }}
               >
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{
-                    padding: "5px",
-                    backgroundColor: "black",
-                    color: "white",
-                    textTransform: "capitalize",
-                  }}
-                >
-                  <Link
-                    to={`/itemdetail?id=${item.id}`}
-                    style={{ color: "white", textDecoration: "none" }}
+                <div className="img_container">
+                  <img
+                    src={item.picture}
+                    style={{ width: "250px", height: "250px" }}
+                  />
+                  <div
+                    className="card-body"
+                    style={{
+                      textTransform: "capitalize",
+                      color: "#212121",
+                      fontWeight: "400",
+                    }}
                   >
-                    {" "}
-                    Add to Cart
-                  </Link>
-                </button>
-              </p>
-            </div>
-          );
-        })}
+                    <h4 style={{ marginBottom: "8px", color: "#264653" }}>
+                      Item: {item.name}
+                    </h4>
+                    <p>Price: {item.price}</p>
+                    <p style={{ marginTop: "10px" }}>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        style={{
+                          padding: "5px",
+                          backgroundColor: "#640921",
+                          color: "#cebdaf",
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        <Link
+                          to={`/itemdetail?id=${item.id}`}
+                          style={{ color: "white", textDecoration: "none" }}
+                        >
+                          {" "}
+                          Add to Cart
+                        </Link>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
