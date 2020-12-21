@@ -22,7 +22,7 @@ function Navtransparent(props) {
   return (
     <div className="container-fluid navStyle">
       <nav className=" container navbar navbar-expand-lg navbar-light  p-1 d-flex  justify-content-center navtext ">
-        <NavLink className="navbar-brand " to="#">
+        <NavLink className="navbar-brand  " to="#" style={{ color: "#F5F7F9" }}>
           TrendGo
         </NavLink>
         <button
@@ -55,29 +55,35 @@ function Navtransparent(props) {
               </select>
             </li>
             <li className="nav-item active">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link navcolor">
                 Home <span className="sr-only">(current)</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/product" className="nav-link">
+              <NavLink to="/product" className="nav-link navcolor">
                 Products
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/cart" className="nav-link">
+              <NavLink to="/cart" className="nav-link navcolor">
                 Cart
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/login" onClick={logOut} className="nav-link">
+              <NavLink
+                to="/login"
+                onClick={logOut}
+                className="nav-link navcolor"
+              >
                 Logout
               </NavLink>
             </li>
             <li className="nav-item">
               <div className="cart" style={{ position: "relative" }}>
-                <ShoppingCartIcon style={{ fontSize: "30px" }} />
+                <ShoppingCartIcon
+                  style={{ fontSize: "30px", color: "#dc3545" }}
+                />
                 <p
                   style={{
                     position: "absolute",

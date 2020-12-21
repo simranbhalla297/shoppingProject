@@ -83,10 +83,6 @@ input {
   border-top: 3px solid #e76f51;
   color: #515151;
 }
-.btn {
-  color: black;
-  background-color: #d3d3d3;
-}
 
 .nav-item {
   font-weight: 400;
@@ -137,11 +133,24 @@ tr {
   cursor: pointer;
   border-radius: 3px;
   font-weight: 500;
+  transition: 0.3s;
+  outline: none;
+  border: none;
 }
-.table > :not(caption) > * > * {
-  /* padding: .5rem .5rem; */
+.nav-item .active {
+  color: #dc3545 !important;
 }
 p {
   margin-top: 0;
   /* margin-bottom: 1rem; */
+}
+.navcolor {
+  color: #f5f7f9 !important;
+  transition-property: color;
+  transition-duration: 0.3s;
+  font-weight: 400;
+  font-size: large;
+}
+.navcolor:hover {
+  color: #dc3545 !important;
 }

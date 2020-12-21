@@ -16,6 +16,7 @@ function Cart(props) {
   //get list
   function getCartList() {
     setLoading(true);
+
     var uid = firebase.auth().currentUser.uid;
     var ref = firebase
       .firestore()
@@ -33,7 +34,13 @@ function Cart(props) {
   useEffect(() => {
     getCartList();
   }, []);
-
+  useEffect(() => {
+    if (firebase.auth().currentUser == null) {
+      history.push("/login");
+    } else {
+      getCartList();
+    }
+  });
   useEffect(() => {
     getTotalItem();
   }, [cart.length]);
